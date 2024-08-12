@@ -5,3 +5,5 @@ def listar_clientes():
 
 def cadastrar_cliente(nome, cpf, endereco, bairro, cidade_estado, cep, telefone, email, senha):
     return save_cliente(nome, cpf, endereco, bairro, cidade_estado, cep, telefone, email, senha)
+
+

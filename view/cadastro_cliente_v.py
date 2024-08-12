@@ -40,17 +40,28 @@ class CadastroClienteView(tk.Tk):
     def cadastrar(self):
         cliente_data = {label: entry.get() for label, entry in self.entries.items()}
 
-        # Adicionar validação de dados aqui se necessário
-
         if all(cliente_data.values()):
-            success = cadastrar_cliente(cliente_data)
-            if success:
-                messagebox.showinfo("Sucesso", "Cliente cadastrado com sucesso")
+            success = cadastrar_cliente(
+                cliente_data['Nome'],
+                cliente_data['CPF'],
+                cliente_data['Endereço'],
+                cliente_data['Bairro'],
+                cliente_data['Cidade/Estado'],
+                cliente_data['CEP'],
+                cliente_data['Telefone'],
+                cliente_data['Email'],
+                cliente_data['Senha']
+            )
+            
+            if "sucesso" in success.lower():
+                messagebox.showinfo("Sucesso", success)
                 self.limpar_campos()
             else:
-                messagebox.showerror("Erro", "Falha ao cadastrar cliente")
+                messagebox.showerror("Erro", success)
         else:
             messagebox.showwarning("Atenção", "Por favor, preencha todos os campos")
+
+
 
     def limpar_campos(self):
         for entry in self.entries.values():
