@@ -32,11 +32,16 @@ class CadastroClienteView(tk.Tk):
             entry.grid(row=i, column=1, padx=10, pady=5, sticky='w')
             self.entries[label] = entry
 
+        # Criar um frame para os botões e posicioná-lo na parte inferior
+        button_frame = tk.Frame(self, bg='white')
+        button_frame.pack(side=tk.BOTTOM, pady=10)
+
         # Adicionar botão de cadastrar
-        tk.Button(self, text="Cadastrar", command=self.cadastrar, bg='#4CAF50', fg='white', relief='raised').pack(pady=10)
+        tk.Button(button_frame, text="Cadastrar", command=self.cadastrar, bg='#4CAF50', fg='white', relief='raised').pack(side=tk.LEFT, padx=5)
 
         # Adicionar botão de voltar
-        tk.Button(self, text="Voltar", command=self.voltar, bg='#f44336', fg='white', relief='raised').pack(pady=10)
+        tk.Button(button_frame, text="Voltar", command=self.voltar, bg='#f44336', fg='white', relief='raised').pack(side=tk.LEFT, padx=5)
+
     def cadastrar(self):
         cliente_data = {label: entry.get() for label, entry in self.entries.items()}
 
@@ -60,8 +65,6 @@ class CadastroClienteView(tk.Tk):
                 messagebox.showerror("Erro", success)
         else:
             messagebox.showwarning("Atenção", "Por favor, preencha todos os campos")
-
-
 
     def limpar_campos(self):
         for entry in self.entries.values():
